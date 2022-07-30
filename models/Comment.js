@@ -1,16 +1,16 @@
 const { Schema, model, Types } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-const replySchema = new Schema({
+const ReplySchema = new Schema({
     replyId: {
       type: Schema.Types.ObjectId,
       default: () => new Types.objectId()
     },
-    writtenBy: {
+    body: {
       type: String
     },
-    replyBody: {
-      type: String,
+    writtenBy: {
+      type: String
     },
     createdAt: {
       type: Date,
@@ -36,7 +36,9 @@ const CommentSchema = new Schema({
       type: Date,
       default: Date.now
     },
-    replies: [replySchema]
+    replies: [
+      ReplySchema
+    ]
   },
   {
     toJSON: {
