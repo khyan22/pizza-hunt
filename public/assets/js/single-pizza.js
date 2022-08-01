@@ -141,10 +141,10 @@ function handleNewReplySubmit(event) {
     return false;
   }
 
-  const commentId = event.target.getAttribute('data-commentid');
+  const commentId = event.target.getAttribute('data-commentId');
 
-  const writtenBy = event.target.querySelector('[name=reply-name]').value;
-  const replyBody = event.target.querySelector('[name=reply]').value;
+  const writtenBy = event.target.querySelector('[name="reply-name"]').value;
+  const replyBody = event.target.querySelector('[name="reply"]').value;
 
   if (!replyBody || !writtenBy) {
     return false;

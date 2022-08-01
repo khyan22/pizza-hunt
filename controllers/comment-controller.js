@@ -62,8 +62,8 @@ const commentController = {
   //*reply methods
   createReply({ params, body }, res) {
     Comment.findOneAndUpdate(
-        { _id: params.CommentId }, 
-        { $push: { replies: _id } }, 
+        { _id: params.commentId }, 
+        { $push: { replies: body } }, 
         { new: true }
       )
     .then(dbPizzaData => {
