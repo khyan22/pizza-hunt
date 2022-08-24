@@ -43,28 +43,12 @@ const commentController = {
       })
       .catch(err => res.json(err));
   },
-  //update comment
-  updateComment({ params, body }, res) {
-   Comment.findOneAndUpdate( { _id: params.commentId }, body, { new: true })
-    .then(dbCommentData => {
-      if (!dbCommentData) {
-        res.status(404).json({ message: 'Comment not found.'});
-        return;
-      }
-
-      res.json(dbCommentData);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-  },
   //*reply methods
   createReply({ params, body }, res) {
     Comment.findOneAndUpdate(
         { _id: params.commentId }, 
         { $push: { replies: body } }, 
-        { new: true }
+        { new: true, runValidators: true }
       )
     .then(dbPizzaData => {
       if (!dbPizzaData) {
@@ -85,9 +69,6 @@ const commentController = {
       .catch(err => res.json(err)
       ); 
   },
-  updateReply({ params, body }, res) {
-
-  }
 };
 
 module.exports = commentController;
